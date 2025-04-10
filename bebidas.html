@@ -4,69 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bebidas - UV Food</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
-            padding: 40px;
-        }
-        header {
-            background: #1a2a6c;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-        .content {
-            max-width: 800px;
-            margin: 20px auto;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px;
-            background: #f9f9f9;
-            margin: 10px 0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .item:hover {
-            transform: scale(1.03);
-            background: #74ebd5;
-            color: white;
-        }
-        .item span {
-            font-weight: bold;
-            color: #b21f1f;
-        }
-        nav {
-            text-align: center;
-            margin: 20px 0;
-        }
-        nav a {
-            color: #1a2a6c;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 0 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="bebidas.html">Bebidas</a></li>
+            <li><a href="sandwiches.html">Sándwiches</a></li>
+            <li><a href="patatas.html">Patatas de bolsa</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+    </div>
+
     <header>
         <h1>Bebidas</h1>
     </header>
-    <nav>
-        <a href="index.html">Volver al inicio</a> | <a href="carrito.html">Ver Carrito</a>
-    </nav>
+
     <div class="content">
-        <div class="item" onclick="addToCart('Agua', 0.50)">Agua <span>0,50€</span></div>
-        <div class="item" onclick="addToCart('Refresco', 1.00)">Refresco (Cola, Naranja, Limón) <span>1,00€</span></div>
-        <div class="item" onclick="addToCart('Zumo de frutas', 1.20)">Zumo de frutas <span>1,20€</span></div>
+        <section>
+            <h2>Nuestras Bebidas</h2>
+            <div class="item" onclick="addToCart('Agua', 0.50)">Agua <span>0,50€</span></div>
+            <div class="item" onclick="addToCart('Refresco', 1.00)">Refresco (Cola, Naranja, Limón) <span>1,00€</span></div>
+            <div class="item" onclick="addToCart('Zumo de frutas', 1.20)">Zumo de frutas <span>1,20€</span></div>
+        </section>
+
+        <footer>
+            <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
+            <p>© 2025 UV Food - IES Valle Inclán</p>
+        </footer>
     </div>
 
     <script src="cart.js"></script>
