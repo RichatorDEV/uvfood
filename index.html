@@ -177,7 +177,7 @@
             margin-top: 20px;
         }
 
-        input, button {
+        input, textarea, button {
             padding: 12px;
             border: none;
             border-radius: 10px;
@@ -185,12 +185,12 @@
             transition: all 0.3s ease;
         }
 
-        input {
+        input, textarea {
             background: #f1f1f1;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        input:focus {
+        input:focus, textarea:focus {
             outline: none;
             background: #fff;
             box-shadow: 0 0 10px rgba(116, 235, 213, 0.5);
@@ -340,6 +340,7 @@
             <form id="checkout-form" onsubmit="submitOrder(event)">
                 <input type="text" id="name" placeholder="Tu nombre" required>
                 <input type="text" id="class" placeholder="Tu clase (ej. 4ºA)" required>
+                <textarea id="uv-message" placeholder="UV Messages (opcional)" rows="3"></textarea>
                 <button type="submit">Confirmar Pedido</button>
             </form>
         </div>
@@ -352,7 +353,11 @@
         </footer>
     </div>
 
+    <!-- Integración de EmailJS -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
+        emailjs.init("bcud2NgRliClqVivQ"); // Public Key insertado
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function showSection(sectionId) {
@@ -407,28 +412,38 @@
             event.preventDefault();
             const name = document.getElementById('name').value;
             const className = document.getElementById('class').value;
+            const uvMessage = document.getElementById('uv-message').value || "Sin mensaje";
             if (cart.length === 0) {
                 alert('El carrito está vacío!');
                 return;
             }
 
-            // Preparar el contenido del "correo"
-            let emailBody = `Nuevo pedido confirmado:\n\nNombre: ${name}\nClase: ${className}\n\nProductos:\n`;
+            let emailBody = `Productos:\n`;
             let total = 0;
             cart.forEach(item => {
                 emailBody += `${item.name} - ${item.price.toFixed(2)}€\n`;
                 total += item.price;
             });
-            emailBody += `\nTotal: ${total.toFixed(2)}€\n\nEnviado a: richator3000@gmail.com`;
 
-            // Simular el envío del correo con una alerta
-            alert(`Pedido confirmado y "enviado" a richator3000@gmail.com:\n\n${emailBody}`);
+            const templateParams = {
+                from_name: name,
+                class: className,
+                message: emailBody,
+                total: total.toFixed(2),
+                uv_message: uvMessage,
+                to_email: "richator3000@gmail.com"
+            };
 
-            // Limpiar el carrito y actualizar
-            cart = [];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            document.getElementById('checkout-form').reset();
-            displayCart();
+            emailjs.send("service_lc2uwqr", "template_ioso0jf", templateParams)
+                .then(() => {
+                    alert("Pedido confirmado y correo enviado a richator3000@gmail.com!");
+                    cart = [];
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    document.getElementById('checkout-form').reset();
+                    displayCart();
+                }, (error) => {
+                    alert("Error al enviar el correo: " + error.text);
+                });
         }
 
         // Mostrar la sección de inicio por defecto
