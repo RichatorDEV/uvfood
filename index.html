@@ -4,78 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UV Food - IES Valle Inclán</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
-            color: #333;
-            text-align: center;
-            padding: 40px;
-        }
-        header {
-            background: #1a2a6c;
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 3rem;
-        }
-        nav {
-            margin-top: 40px;
-        }
-        nav a {
-            display: inline-block;
-            margin: 15px;
-            padding: 15px 30px;
-            background: #ffffff;
-            color: #1a2a6c;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        nav a:hover {
-            background: #74ebd5;
-            color: white;
-            transform: scale(1.1);
-        }
-        footer {
-            margin-top: 40px;
-            color: #fff;
-            background: #1a2a6c;
-            padding: 20px;
-            border-radius: 15px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="bebidas.html">Bebidas</a></li>
+            <li><a href="sandwiches.html">Sándwiches</a></li>
+            <li><a href="patatas.html">Patatas de bolsa</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+    </div>
+
     <header>
         <h1>UV Food - Comida entre clases</h1>
         <p>IES Valle Inclán</p>
     </header>
 
-    <nav>
-        <a href="bebidas.html">Bebidas</a>
-        <a href="sandwiches.html">Sándwiches</a>
-        <a href="patatas.html">Patatas de bolsa</a>
-        <a href="carrito.html">Ver Carrito</a>
-    </nav>
+    <div class="content">
+        <section>
+            <h2>Bienvenidos a UV Food</h2>
+            <p>¡Pide tu comida rápida para el recreo! Explora nuestras categorías en la barra lateral y añade tus favoritos al carrito.</p>
+        </section>
 
-    <footer>
-        <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
-        <p>© 2025 UV Food - IES Valle Inclán</p>
-    </footer>
+        <footer>
+            <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
+            <p>© 2025 UV Food - IES Valle Inclán</p>
+        </footer>
+    </div>
 </body>
 </html>
