@@ -340,7 +340,7 @@
             <form id="checkout-form" onsubmit="submitOrder(event)">
                 <input type="text" id="name" placeholder="Tu nombre" required>
                 <input type="text" id="class" placeholder="Tu clase (ej. 4ºA)" required>
-                <textarea id="uv-message" placeholder="UV Messages (opcional)" rows="3"></textarea>
+                <textarea id="uv-message" placeholder="UV Messages (necesario para contactarte)" rows="3" required></textarea>
                 <button type="submit">Confirmar Pedido</button>
             </form>
         </div>
@@ -412,7 +412,7 @@
             event.preventDefault();
             const name = document.getElementById('name').value;
             const className = document.getElementById('class').value;
-            const uvMessage = document.getElementById('uv-message').value || "Sin mensaje";
+            const uvMessage = document.getElementById('uv-message').value;
             if (cart.length === 0) {
                 alert('El carrito está vacío!');
                 return;
