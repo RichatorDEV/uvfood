@@ -58,13 +58,12 @@
             left: 0;
             box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
             border-right: 1px solid rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
 
         .sidebar ul {
             list-style: none;
-            padding: 30px 20px;
-            margin-top: 100px;
+            padding: 20px;
+            margin-top: 20px; /* Ajustado para que "Inicio" sea visible */
         }
 
         .sidebar ul li {
@@ -206,6 +205,13 @@
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .footer-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            display: inline-block;
+        }
+
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -292,25 +298,25 @@
         <div id="bebidas" class="section">
             <h2>Bebidas Refrescantes</h2>
             <p>Hidrátate con nuestras opciones frescas y deliciosas, perfectas para un descanso entre clases.</p>
-            <div class="item" onclick="addToCart('Agua', 0.50)">Agua <span>0,50€</span></div>
-            <div class="item" onclick="addToCart('Refresco', 1.00)">Refresco (Cola, Naranja, Limón) <span>1,00€</span></div>
-            <div class="item" onclick="addToCart('Zumo de frutas', 1.20)">Zumo de frutas <span>1,20€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Agua', 0.50)">Agua <span>0,50€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Refresco', 1.00)">Refresco (Cola, Naranja, Limón) <span>1,00€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Zumo de frutas', 1.20)">Zumo de frutas <span>1,20€</span></div>
         </div>
 
         <div id="sandwiches" class="section">
             <h2>Sándwiches Gourmet</h2>
             <p>Nuestros sándwiches están preparados al momento con ingredientes frescos para saciar tu hambre.</p>
-            <div class="item" onclick="addToCart('Jamón y queso', 2.00)">Jamón y queso <span>2,00€</span></div>
-            <div class="item" onclick="addToCart('Pollo con lechuga', 2.50)">Pollo con lechuga <span>2,50€</span></div>
-            <div class="item" onclick="addToCart('Atún con tomate', 2.30)">Atún con tomate <span>2,30€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Jamón y queso', 2.00)">Jamón y queso <span>2,00€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Pollo con lechuga', 2.50)">Pollo con lechuga <span>2,50€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Atún con tomate', 2.30)">Atún con tomate <span>2,30€</span></div>
         </div>
 
         <div id="patatas" class="section">
             <h2>Patatas de Bolsa</h2>
             <p>Crujientes y llenas de sabor, el complemento ideal para tu recreo.</p>
-            <div class="item" onclick="addToCart('Patatas clásicas', 1.00)">Patatas clásicas <span>1,00€</span></div>
-            <div class="item" onclick="addToCart('Patatas BBQ', 1.20)">Patatas con sabor BBQ <span>1,20€</span></div>
-            <div class="item" onclick="addToCart('Patatas onduladas', 1.10)">Patatas onduladas <span>1,10€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Patatas clásicas', 1.00)">Patatas clásicas <span>1,00€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Patatas BBQ', 1.20)">Patatas con sabor BBQ <span>1,20€</span></div>
+            <div class="item" onclick="addToCartWithQuantity('Patatas onduladas', 1.10)">Patatas onduladas <span>1,10€</span></div>
         </div>
 
         <div id="carrito" class="section">
@@ -326,8 +332,10 @@
         </div>
 
         <footer>
-            <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
-            <p>© 2025 UV Food - IES Valle Inclán | Diseñado para estudiantes, por estudiantes</p>
+            <div class="footer-box">
+                <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
+                <p>© 2025 UV Food - IES Valle Inclán | Diseñado para estudiantes, por estudiantes</p>
+            </div>
         </footer>
     </div>
 
@@ -338,16 +346,24 @@
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
-            document.getElementById(sectionId).classList.add('active');
+            document.get/methodId(sectionId).classList.add('active');
             if (sectionId === 'carrito') {
                 displayCart();
             }
         }
 
-        function addToCart(itemName, price) {
-            cart.push({ name: itemName, price: price });
+        function addToCartWithQuantity(itemName, price) {
+            let quantity = prompt(`¿Cuántos ${itemName} quieres añadir al carrito?`, "1");
+            quantity = parseInt(quantity);
+            if (isNaN(quantity) || quantity <= 0) {
+                alert("Por favor, introduce una cantidad válida.");
+                return;
+            }
+            for (let i = 0; i < quantity; i++) {
+                cart.push({ name: itemName, price: price });
+            }
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${itemName} añadido al carrito!`);
+            alert(`${quantity} x ${itemName} añadido(s) al carrito!`);
         }
 
         function displayCart() {
