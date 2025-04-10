@@ -17,24 +17,20 @@ header {
     text-align: center;
     padding: 2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 1s ease-in-out;
 }
 
 h1 {
-    font-size: 2.8rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 2.5rem;
 }
 
 .sidebar {
-    width: 220px;
+    width: 200px;
     background: rgba(255, 255, 255, 0.95);
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transition: transform 0.3s ease;
 }
 
 .sidebar ul {
@@ -51,68 +47,52 @@ h1 {
     text-decoration: none;
     color: #2c3e50;
     font-weight: 600;
-    font-size: 1.1rem;
     display: block;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 5px;
     transition: all 0.3s ease;
-    background: linear-gradient(to right, #74ebd5, transparent);
-    background-size: 200%;
-    background-position: left;
 }
 
 .sidebar ul li a:hover {
-    background-position: right;
+    background: #74ebd5;
     color: white;
     transform: translateX(5px);
 }
 
 .content {
-    margin-left: 240px;
-    padding: 40px;
-    min-height: 100vh;
-    transition: margin-left 0.3s ease;
+    margin-left: 220px;
+    padding: 30px;
 }
 
 section {
     background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    transform: translateY(50px);
-    animation: slideUp 0.6s ease forwards;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
-
-section:nth-child(2) { animation-delay: 0.2s; }
-section:nth-child(3) { animation-delay: 0.4s; }
 
 h2 {
     color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
 }
 
 .item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px;
+    padding: 10px;
     background: #f9f9f9;
     margin: 10px 0;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .item:hover {
-    transform: translateY(-5px);
     background: #74ebd5;
     color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
 }
 
 .item span {
@@ -126,20 +106,19 @@ h2 {
     padding: 10px;
     background: #f9f9f9;
     margin: 5px 0;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 input, button {
-    padding: 12px;
+    padding: 10px;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 5px;
 }
 
 input {
@@ -162,26 +141,6 @@ footer {
     padding: 20px;
     color: #fff;
     background: linear-gradient(90deg, #2c3e50, #4ca1af);
-    margin-top: 40px;
-    border-radius: 15px 15px 0 0;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 180px;
-    }
-    .content {
-        margin-left: 200px;
-    }
+    margin-top: 20px;
+    border-radius: 10px 10px 0 0;
 }
