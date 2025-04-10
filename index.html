@@ -58,13 +58,13 @@
             left: 0;
             box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
             border-right: 1px solid rgba(0, 0, 0, 0.1);
-            z-index: 1000; /* Asegurar que esté encima del contenido */
+            z-index: 1000;
         }
 
         .sidebar ul {
             list-style: none;
             padding: 20px;
-            margin-top: 20px; /* Ajustado para que "Inicio" sea completamente visible */
+            margin-top: 20px;
         }
 
         .sidebar ul li {
@@ -150,11 +150,24 @@
         .cart-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 12px;
             background: #f9f9f9;
             margin: 10px 0;
             border-radius: 10px;
             border: 1px solid #eee;
+        }
+
+        .cart-item button {
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .cart-item button:hover {
+            background: #d32f2f;
         }
 
         form {
@@ -209,7 +222,7 @@
         .footer-box {
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
-            border-radius: 15px 15px 0 0; /* Bordes superiores redondeados, inferiores rectos */
+            border-radius: 15px 15px 0 0;
             display: inline-block;
         }
 
@@ -238,7 +251,6 @@
             margin-bottom: 10px;
         }
 
-        /* Animaciones */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -367,15 +379,24 @@
             alert(`${quantity} x ${itemName} añadido(s) al carrito!`);
         }
 
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
         function displayCart() {
             const cartItemsDiv = document.getElementById('cart-items');
             const cartTotalSpan = document.getElementById('cart-total');
             cartItemsDiv.innerHTML = '';
             let total = 0;
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `${item.name} <span>${item.price.toFixed(2)}€</span>`;
+                itemDiv.innerHTML = `
+                    ${item.name} <span>${item.price.toFixed(2)}€</span>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
                 cartItemsDiv.appendChild(itemDiv);
                 total += item.price;
             });
@@ -390,7 +411,20 @@
                 alert('El carrito está vacío!');
                 return;
             }
-            alert(`Pedido confirmado!\nNombre: ${name}\nClase: ${className}\nTotal: ${document.getElementById('cart-total').textContent}`);
+
+            // Preparar el contenido del "correo"
+            let emailBody = `Nuevo pedido confirmado:\n\nNombre: ${name}\nClase: ${className}\n\nProductos:\n`;
+            let total = 0;
+            cart.forEach(item => {
+                emailBody += `${item.name} - ${item.price.toFixed(2)}€\n`;
+                total += item.price;
+            });
+            emailBody += `\nTotal: ${total.toFixed(2)}€\n\nEnviado a: richator3000@gmail.com`;
+
+            // Simular el envío del correo con una alerta
+            alert(`Pedido confirmado y "enviado" a richator3000@gmail.com:\n\n${emailBody}`);
+
+            // Limpiar el carrito y actualizar
             cart = [];
             localStorage.setItem('cart', JSON.stringify(cart));
             document.getElementById('checkout-form').reset();
