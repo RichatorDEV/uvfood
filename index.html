@@ -58,12 +58,13 @@
             left: 0;
             box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
             border-right: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Asegurar que esté encima del contenido */
         }
 
         .sidebar ul {
             list-style: none;
             padding: 20px;
-            margin-top: 20px; /* Ajustado para que "Inicio" sea visible */
+            margin-top: 20px; /* Ajustado para que "Inicio" sea completamente visible */
         }
 
         .sidebar ul li {
@@ -208,7 +209,7 @@
         .footer-box {
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
-            border-radius: 15px 15px 0 0;
+            border-radius: 15px 15px 0 0; /* Bordes superiores redondeados, inferiores rectos */
             display: inline-block;
         }
 
@@ -346,7 +347,7 @@
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
-            document.get/methodId(sectionId).classList.add('active');
+            document.getElementById(sectionId).classList.add('active');
             if (sectionId === 'carrito') {
                 displayCart();
             }
