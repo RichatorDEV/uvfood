@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UV Food - IES Valle Inclán</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,72 +14,99 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            background: linear-gradient(135deg, #ff6b6b, #ffe66d);
             color: #333;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(90deg, #2c3e50, #4ca1af);
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
             color: white;
             text-align: center;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            pointer-events: none;
+            animation: shimmer 5s infinite;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
         }
 
         .sidebar {
-            width: 200px;
+            width: 250px;
             background: rgba(255, 255, 255, 0.95);
             height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
         .sidebar ul {
             list-style: none;
-            padding: 20px;
-            margin-top: 80px;
+            padding: 30px 20px;
+            margin-top: 100px;
         }
 
         .sidebar ul li {
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
         .sidebar ul li a {
             text-decoration: none;
-            color: #2c3e50;
+            color: #1e3c72;
             font-weight: 600;
+            font-size: 1.2rem;
             display: block;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 12px 20px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            background-size: 200%;
+            background-position: left;
+            transition: all 0.4s ease;
         }
 
         .sidebar ul li a:hover {
-            background: #74ebd5;
+            background-position: right;
             color: white;
-            transform: translateX(5px);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .content {
-            margin-left: 220px;
-            padding: 30px;
+            margin-left: 270px;
+            padding: 40px;
+            min-height: 100vh;
         }
 
         .section {
             display: none;
             background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.5s ease forwards;
         }
 
         .section.active {
@@ -87,76 +114,137 @@
         }
 
         h2 {
-            color: #2c3e50;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            color: #1e3c72;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .item {
             display: flex;
             justify-content: space-between;
-            padding: 10px;
+            align-items: center;
+            padding: 15px;
             background: #f9f9f9;
-            margin: 10px 0;
-            border-radius: 5px;
+            margin: 15px 0;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+            border: 1px solid #eee;
         }
 
         .item:hover {
             background: #74ebd5;
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .item span {
-            font-weight: bold;
-            color: #e74c3c;
+            font-weight: 600;
+            color: #ff4757;
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px;
+            padding: 12px;
             background: #f9f9f9;
-            margin: 5px 0;
-            border-radius: 5px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #eee;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         input, button {
-            padding: 10px;
+            padding: 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
         input {
             background: #f1f1f1;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus {
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(116, 235, 213, 0.5);
         }
 
         button {
             background: #74ebd5;
             color: white;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
         }
 
         button:hover {
-            background: #2c3e50;
+            background: #1e3c72;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: #fff;
-            background: linear-gradient(90deg, #2c3e50, #4ca1af);
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            margin-top: 40px;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             margin-top: 20px;
-            border-radius: 10px 10px 0 0;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
     </style>
 </head>
@@ -173,31 +261,53 @@
 
     <header>
         <h1>UV Food - Comida entre clases</h1>
-        <p>IES Valle Inclán</p>
+        <p>IES Valle Inclán - Tu solución rápida para el recreo</p>
     </header>
 
     <div class="content">
         <div id="inicio" class="section active">
-            <h2>Bienvenidos a UV Food</h2>
-            <p>¡Pide tu comida rápida para el recreo! Usa la barra lateral para explorar nuestras categorías.</p>
+            <h2>¡Bienvenidos a UV Food!</h2>
+            <p>En UV Food, ofrecemos una experiencia gastronómica rápida y deliciosa para los estudiantes del IES Valle Inclán. Diseñada especialmente para el recreo, nuestra plataforma te permite elegir entre una variedad de bebidas refrescantes, sándwiches recién hechos y patatas de bolsa crujientes, todo a precios asequibles. ¡Explora nuestras categorías en la barra lateral y haz tu pedido en segundos!</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>¿Cómo funciona?</h3>
+                    <p>1. Navega por las categorías usando la barra lateral.<br>2. Haz clic en los productos para añadirlos a tu carrito.<br>3. Ve al carrito, ingresa tu nombre y clase, y confirma tu pedido.<br>4. Recoge tu comida en el patio durante el recreo.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Horario</h3>
+                    <p>Estamos disponibles exclusivamente durante el recreo, de <strong>11:00 a 11:30</strong>. Asegúrate de hacer tu pedido con tiempo para disfrutarlo al máximo.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Nuestra misión</h3>
+                    <p>Facilitar el acceso a comida rápida, sabrosa y económica para los estudiantes, promoviendo un recreo más agradable y sin complicaciones.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Precios y calidad</h3>
+                    <p>Todos nuestros productos están pensados para el bolsillo estudiantil, con precios desde 0,50€. Usamos ingredientes frescos y de calidad para que cada bocado valga la pena.</p>
+                </div>
+            </div>
         </div>
 
         <div id="bebidas" class="section">
-            <h2>Nuestras Bebidas</h2>
+            <h2>Bebidas Refrescantes</h2>
+            <p>Hidrátate con nuestras opciones frescas y deliciosas, perfectas para un descanso entre clases.</p>
             <div class="item" onclick="addToCart('Agua', 0.50)">Agua <span>0,50€</span></div>
             <div class="item" onclick="addToCart('Refresco', 1.00)">Refresco (Cola, Naranja, Limón) <span>1,00€</span></div>
             <div class="item" onclick="addToCart('Zumo de frutas', 1.20)">Zumo de frutas <span>1,20€</span></div>
         </div>
 
         <div id="sandwiches" class="section">
-            <h2>Nuestros Sándwiches</h2>
+            <h2>Sándwiches Gourmet</h2>
+            <p>Nuestros sándwiches están preparados al momento con ingredientes frescos para saciar tu hambre.</p>
             <div class="item" onclick="addToCart('Jamón y queso', 2.00)">Jamón y queso <span>2,00€</span></div>
             <div class="item" onclick="addToCart('Pollo con lechuga', 2.50)">Pollo con lechuga <span>2,50€</span></div>
             <div class="item" onclick="addToCart('Atún con tomate', 2.30)">Atún con tomate <span>2,30€</span></div>
         </div>
 
         <div id="patatas" class="section">
-            <h2>Nuestras Patatas</h2>
+            <h2>Patatas de Bolsa</h2>
+            <p>Crujientes y llenas de sabor, el complemento ideal para tu recreo.</p>
             <div class="item" onclick="addToCart('Patatas clásicas', 1.00)">Patatas clásicas <span>1,00€</span></div>
             <div class="item" onclick="addToCart('Patatas BBQ', 1.20)">Patatas con sabor BBQ <span>1,20€</span></div>
             <div class="item" onclick="addToCart('Patatas onduladas', 1.10)">Patatas onduladas <span>1,10€</span></div>
@@ -205,6 +315,7 @@
 
         <div id="carrito" class="section">
             <h2>Tu Pedido</h2>
+            <p>Revisa tu selección y confirma tu pedido aquí.</p>
             <div id="cart-items"></div>
             <p>Total: <span id="cart-total">0,00€</span></p>
             <form id="checkout-form" onsubmit="submitOrder(event)">
@@ -216,7 +327,7 @@
 
         <footer>
             <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
-            <p>© 2025 UV Food - IES Valle Inclán</p>
+            <p>© 2025 UV Food - IES Valle Inclán | Diseñado para estudiantes, por estudiantes</p>
         </footer>
     </div>
 
