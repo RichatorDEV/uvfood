@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sándwiches - UV Food</title>
-    <link rel="stylesheet" href="bebidas.html#style"> <!-- Reutiliza los estilos de bebidas -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="bebidas.html">Bebidas</a></li>
+            <li><a href="sandwiches.html">Sándwiches</a></li>
+            <li><a href="patatas.html">Patatas de bolsa</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+    </div>
+
     <header>
         <h1>Sándwiches</h1>
     </header>
-    <nav>
-        <a href="index.html">Volver al inicio</a> | <a href="carrito.html">Ver Carrito</a>
-    </nav>
+
     <div class="content">
-        <div class="item" onclick="addToCart('Jamón y queso', 2.00)">Jamón y queso <span>2,00€</span></div>
-        <div class="item" onclick="addToCart('Pollo con lechuga', 2.50)">Pollo con lechuga <span>2,50€</span></div>
-        <div class="item" onclick="addToCart('Atún con tomate', 2.30)">Atún con tomate <span>2,30€</span></div>
+        <section>
+            <h2>Nuestros Sándwiches</h2>
+            <div class="item" onclick="addToCart('Jamón y queso', 2.00)">Jamón y queso <span>2,00€</span></div>
+            <div class="item" onclick="addToCart('Pollo con lechuga', 2.50)">Pollo con lechuga <span>2,50€</span></div>
+            <div class="item" onclick="addToCart('Atún con tomate', 2.30)">Atún con tomate <span>2,30€</span></div>
+        </section>
+
+        <footer>
+            <p>Horario: Recreos de 11:00 a 11:30 | Pedidos en el patio</p>
+            <p>© 2025 UV Food - IES Valle Inclán</p>
+        </footer>
     </div>
 
     <script src="cart.js"></script>
