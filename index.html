@@ -18,6 +18,30 @@
             color: #333;
             overflow-x: hidden;
             line-height: 1.6;
+            /* Estilo de la scrollbar para navegadores Webkit (Chrome, Edge, Safari) */
+            scrollbar-width: thin; /* Para Firefox */
+            scrollbar-color: #74ebd5 #1e3c72; /* Para Firefox */
+        }
+
+        /* Estilo para la scrollbar en Webkit */
+        body::-webkit-scrollbar {
+            width: 12px; /* Ancho de la barra */
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #1e3c72; /* Fondo de la pista con un color oscuro del tema */
+            border-radius: 10px; /* Bordes redondeados */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Gradiente moderno */
+            border-radius: 10px; /* Bordes redondeados */
+            border: 2px solid #1e3c72; /* Borde para contraste */
+            transition: background 0.3s ease; /* Transición suave */
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff4757, #74ebd5); /* Cambio de color al pasar el ratón */
         }
 
         header {
@@ -435,7 +459,7 @@
 
             emailjs.send("service_lc2uwqr", "template_ioso0jf", templateParams)
                 .then(() => {
-                    alert("Pedido confirmado, revisa UV Messages, ya que me contactare contigo");
+                    alert("Pedido confirmado, revisa UV Messages, ya que me contactaré contigo");
                     cart = [];
                     localStorage.setItem('cart', JSON.stringify(cart));
                     document.getElementById('checkout-form').reset();
