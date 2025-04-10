@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - UV Food</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            padding: 40px;
+        }
+        header {
+            background: #1a2a6c;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        #cart-items {
+            margin-bottom: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input, button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: #74ebd5;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #1a2a6c;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            color: #1a2a6c;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+    </header>
+    <nav>
+        <a href="index.html">Volver al inicio</a>
+    </nav>
+    <div class="content">
+        <div id="cart-items"></div>
+        <p>Total: <span id="cart-total">0,00€</span></p>
+        <form id="checkout-form" onsubmit="submitOrder(event)">
+            <input type="text" id="name" placeholder="Tu nombre" required>
+            <input type="text" id="class" placeholder="Tu clase (ej. 4ºA)" required>
+            <button type="submit">Confirmar Pedido</button>
+        </form>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>
+        displayCart();
+    </script>
+</body>
+</html>
